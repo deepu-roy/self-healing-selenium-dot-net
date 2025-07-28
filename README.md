@@ -151,7 +151,7 @@ Please review the same and update the test or create bug
 - **Use Case**: Production test runs where continuity is prioritized
 - **Output**: Logs the successful locator replacement and continues testing
 
-##  Getting Started
+## 🚦 Getting Started
 
 ### Prerequisites
 
@@ -185,7 +185,24 @@ Please review the same and update the test or create bug
    dotnet test src/tests/tests.csproj
    ```
 
-### Example Usage
+### Smart Locator Methods
+
+The framework provides several WebDriver extension methods that automatically invoke the self-healing mechanism:
+
+#### Core Smart Locator Methods
+
+```csharp
+// Get a smart locator that may be different from the original if it fails
+By smartLocator = driver.DoResolveSmartLocator(originalLocator);
+
+// Get a locator with wait - tries original first, then smart locator if needed
+By workingLocator = driver.DoGetLocatorWithWait(originalLocator, waitSeconds, errorMessage);
+
+// Get an element using smart locator resolution
+IWebElement element = driver.DoGetElementWithWait(originalLocator, waitSeconds, errorMessage);
+```
+
+#### Framework Extension Methods (Built on Smart Locators)
 
 ```csharp
 public class LoginPage(IWebDriver driver)
@@ -195,14 +212,33 @@ public class LoginPage(IWebDriver driver)
     
     public void DoLogin(string userName, string password)
     {
-        // These methods automatically use self-healing locators
+        // These methods use DoGetLocatorWithWait internally for smart locator resolution
         _driver.DoClearAndSendKeys(_usernameInput, userName);
         _driver.DoClick(_loginButton);
+        
+        // Direct smart locator usage examples:
+        
+        // 1. Get a smart locator if original fails
+        var smartLoginButton = _driver.DoResolveSmartLocator(_loginButton);
+        
+        // 2. Get element with automatic smart locator fallback
+        var loginElement = _driver.DoGetElementWithWait(_loginButton, 10, "Login button not found");
+        
+        // 3. Check existence with smart locator support
+        if (_driver.DoCheckIfExists(_loginButton, 5))
+        {
+            // Original locator works
+        }
     }
 }
 ```
 
-The framework extends WebDriver with methods like `DoClick()`, `DoClearAndSendKeys()`, and `DoCheckIfExists()` that automatically invoke the self-healing mechanism when locators fail.
+#### Method Behavior
+
+- **`DoResolveSmartLocator(By locator)`**: Returns the original locator if it works, otherwise generates and returns a smart locator
+- **`DoGetLocatorWithWait(By locator, double waitTime, string errorMessage)`**: Tries original locator first, falls back to smart locator if needed
+- **`DoGetElementWithWait(By locator, double waitTime, string errorMessage)`**: Returns the actual WebElement using smart locator resolution
+- **`DoClick()` and `DoClearAndSendKeys()`**: Built on top of smart locator methods for seamless integration
 
 ## 🧪 Sample Tests
 
