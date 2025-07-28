@@ -1,0 +1,18 @@
+{
+  "browser": "Chrome",
+  "implicitWaitTimeout": "15",
+  "hubUrl": "http://selenium-hub:4444/wd/hub",
+  "useHub": "false",
+  "environment": "test",
+  "takeScreenshot": "true",
+  "takeScreenshotOnlyForFailedStep": "true",
+  "failForConsoleError": "true",
+  "runMobileTests": "false",
+  "logFilePath": "logs/test_log.log",
+  "logLevel": "info",
+  "useSmartLocator": "true", 
+  "runWithSmartLocator": "false",
+  "openApiModel": "gpt-4.1-nano",
+  "openApiKey": "<set this api key in environment or here>",
+  "cachePath": "cache/locator_cache.json"
+}

@@ -52,3 +52,134 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# ===== SpecFlow / BDD Test Specific =====
+
+# SpecFlow generated feature files
+*.feature.cs
+
+# LivingDoc reports
+LivingDoc/
+TestResults/
+
+# Test result files
+TestResults.xml
+TestResults.trx
+*.trx
+
+# ===== Selenium / WebDriver Specific =====
+
+# WebDriver binaries (downloaded by WebDriverManager)
+drivers/
+chromedriver.exe
+geckodriver.exe
+msedgedriver.exe
+IEDriverServer.exe
+
+# Screenshots taken during test runs
+screenshots/
+test-screenshots/
+TestScreenshots/
+
+# Test reports
+Reports/
+TestReports/
+ExtentReports/
+AllureResults/
+
+# ===== Self-Healing Framework Specific =====
+
+# Smart locator cache files
+cache/
+*.cache.json
+locator_cache.json
+
+# Log files
+logs/
+*.log
+test_log.log
+
+# Configuration files with sensitive data (keep template versions)
+# testsettings.json - commented out as it may contain non-sensitive defaults
+# appsettings.json
+# But keep template/example versions
+!testsettings.example.json
+!appsettings.example.json
+
+# OpenAI API keys and sensitive config
+.env
+.env.local
+.env.production
+.env.test
+
+# Browser profiles and temp data
+browser-profiles/
+temp-browser-data/
+
+# Performance test results
+performance-results/
+load-test-results/
+
+# Video recordings of test runs
+recordings/
+videos/
+*.mp4
+*.avi
+*.mov
+
+# Accessibility tree dumps
+accessibility-dumps/
+*.accessibility.json
+
+# Page source dumps for debugging
+page-sources/
+*.html.dump
+
+# Temporary files created during test execution
+temp/
+tmp/
+*.tmp
+*.temp
+
+# Visual Studio specific
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+# JetBrains Rider
+*.sln.iml
+.idea/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Coverage results
+coverage*.json
+coverage*.xml
+coverage*.info
+*.coverage
+*.coveragexml
